@@ -1,0 +1,28 @@
+{
+  "name": "nodejs-pro-laptop-shop",
+  "version": "1.0.0",
+  "description": "nodejs",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "homepage": "https://github.com/ZoanHy/nodejs-pro-laptop-shop#readme",
+  "bugs": {
+    "url": "https://github.com/ZoanHy/nodejs-pro-laptop-shop/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZoanHy/nodejs-pro-laptop-shop.git"
+  },
+  "license": "ISC",
+  "author": "zoanhy",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
