@@ -7,26 +7,41 @@ export const handleCreateUser = async (
 ) => {
   // insert into database
 
-  const connection = await getConnection();
+  try {
+    const connection = await getConnection();
 
-  const [result, fields] = await connection.execute(
-    "INSERT INTO users (fullName, email, address) VALUES (?, ?, ?)",
-    [fullName, email, address]
-  );
+    const [result, fields] = await connection.execute(
+      "INSERT INTO users (fullName, email, address) VALUES (?, ?, ?)",
+      [fullName, email, address]
+    );
 
-  return result;
+    return result;
+  } catch (err) {
+    console.error("Error creating user: ", err);
+  }
 };
 
 export const getAllUsers = async () => {
-  const connection = await getConnection();
-
   try {
+    const connection = await getConnection();
+
     const [results, fields] = await connection.query("SELECT * FROM `users`");
 
     return results;
   } catch (err) {
     return [];
   }
+};
 
-  return "get all user";
+export const handleDeleteUser = async (userId: string) => {
+  const connection = await getConnection();
+
+  try {
+    const [results, fields] = await connection.execute(
+      "DELETE FROM `users` WHERE id = ?",
+      [userId]
+    );
+  } catch (err) {
+    console.error("Error deleting user: ", err);
+  }
 };
