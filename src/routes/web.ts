@@ -1,8 +1,10 @@
 import {
   getCreateUserPage,
   getHomePage,
+  getViewUser,
   postCreateUser,
   postDeleteUser,
+  postUpdateUser,
 } from "@/controllers/user.controller";
 import express, { Express } from "express";
 
@@ -13,6 +15,8 @@ const webRoutes = (app: Express) => {
   router.get("/create-user", getCreateUserPage);
   router.post("/handle-create-user", postCreateUser);
   router.post("/handle-delete-user/:id", postDeleteUser);
+  router.get("/handle-view-user/:id", getViewUser);
+  router.post("/handle-update-user/:id", postUpdateUser);
 
   app.use("/", router);
 };

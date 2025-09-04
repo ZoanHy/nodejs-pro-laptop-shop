@@ -2,6 +2,8 @@ import {
   getAllUsers,
   handleCreateUser,
   handleDeleteUser,
+  handleUpdateUserById,
+  handleViewUser,
 } from "@/services/user.service";
 import { Request, Response } from "express";
 
@@ -33,4 +35,20 @@ export const postDeleteUser = async (req: Request, res: Response) => {
   await handleDeleteUser(userId);
 
   res.redirect("/");
+};
+
+export const getViewUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const user = await handleViewUser(id);
+
+  return res.render("view-user", { user: user });
+};
+
+export const postUpdateUser = async (req: Request, res: Response) => {
+  const { id, fullName, email, address } = req.body;
+
+  await handleUpdateUserById(id, fullName, email, address);
+
+  return res.redirect("/");
 };
