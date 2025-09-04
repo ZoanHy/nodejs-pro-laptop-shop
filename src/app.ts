@@ -12,6 +12,10 @@ app.set("views", __dirname + "/views");
 // config static files
 app.use(express.static("public"));
 
+// config req body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // config routes
 webRoutes(app);
 
