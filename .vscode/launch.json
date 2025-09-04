@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+    {
+      "name": "debug-zoanhy",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:debug"]
+    }
+  ]
+}
