@@ -1,3 +1,4 @@
+import { prisma } from "@/config/client";
 import getConnection from "@/config/database";
 
 export const handleCreateUser = async (
@@ -7,25 +8,16 @@ export const handleCreateUser = async (
 ) => {
   // insert into database
 
-  try {
-    const connection = await getConnection();
-
-    const [result, fields] = await connection.execute(
-      "INSERT INTO users (fullName, email, address) VALUES (?, ?, ?)",
-      [fullName, email, address]
-    );
-
-    return result;
-  } catch (err) {
-    console.error("Error creating user: ", err);
-  }
+  await prisma.user.create({
+    data: { fullName: fullName, email: email, address: address },
+  });
 };
 
 export const getAllUsers = async () => {
   try {
     const connection = await getConnection();
 
-    const [results, fields] = await connection.query("SELECT * FROM `users`");
+    const [results, fields] = await connection.query("SELECT * FROM `User`");
 
     return results;
   } catch (err) {
