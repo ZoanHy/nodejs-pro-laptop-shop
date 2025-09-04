@@ -1,5 +1,5 @@
+import { getAllUsers, handleCreateUser } from "@/services/user.service";
 import { Request, Response } from "express";
-import { getAllUsers, handleCreateUser } from "../services/user.service";
 
 export const getHomePage = async (req: Request, res: Response) => {
   // get users from db

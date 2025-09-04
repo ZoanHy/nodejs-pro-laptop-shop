@@ -1,4 +1,4 @@
-import getConnection from "../config/database";
+import getConnection from "@/config/database";
 
 export const handleCreateUser = async (
   fullName: string,
