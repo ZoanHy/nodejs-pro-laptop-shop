@@ -1,5 +1,6 @@
 import express from "express";
-require("dotenv").config();
+import "dotenv/config";
+import webRoutes from "./routes/web";
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -7,11 +8,9 @@ const port = process.env.PORT || 8080;
 // config template engine
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-console.log(__dirname);
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
+// config routes
+webRoutes(app);
 
 app.listen(port, () => {
   console.log("Server is running on port " + port);
