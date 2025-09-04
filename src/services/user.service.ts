@@ -1,14 +1,20 @@
 import getConnection from "../config/database";
 
-export const handleCreateUser = (
+export const handleCreateUser = async (
   fullName: string,
   email: string,
   address: string
 ) => {
   // insert into database
 
-  // return result
-  console.log("insert a new user");
+  const connection = await getConnection();
+
+  const [result, fields] = await connection.execute(
+    "INSERT INTO users (fullName, email, address) VALUES (?, ?, ?)",
+    [fullName, email, address]
+  );
+
+  return result;
 };
 
 export const getAllUsers = async () => {
