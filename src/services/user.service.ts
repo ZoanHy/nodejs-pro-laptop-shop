@@ -32,18 +32,10 @@ export const handleDeleteUser = async (userId: string) => {
 };
 
 export const handleViewUser = async (userId: string) => {
-  try {
-    const connection = await getConnection();
-
-    const [results, fields] = await connection.execute(
-      "SELECT * FROM `users` WHERE id = ?",
-      [userId]
-    );
-
-    return results[0];
-  } catch (err) {
-    console.error("Error viewing user: ", err);
-  }
+  const users = await prisma.user.findUnique({
+    where: { id: +userId },
+  });
+  return users;
 };
 
 export const handleUpdateUserById = async (
@@ -52,16 +44,9 @@ export const handleUpdateUserById = async (
   email: string,
   address: string
 ) => {
-  try {
-    const connection = await getConnection();
-
-    const [results, fields] = await connection.execute(
-      "UPDATE `users` SET fullName = ?, email = ?, address = ? WHERE id = ?",
-      [fullName, email, address, id]
-    );
-
-    return results[0];
-  } catch (err) {
-    console.error("Error updating user: ", err);
-  }
+  const updateUser = await prisma.user.update({
+    where: { id: +id },
+    data: { fullName, email, address },
+  });
+  return updateUser;
 };
